@@ -266,7 +266,7 @@ def main(args):
 
         # print(f'Saving output results to \"{os.path.join(output_path, os.path.basename(video_file).replace('.mp4', '') + ".pkl")}\".')
 
-        joblib.dump(vibe_results, os.path.join(output_path, os.path.basename(video_file).replace('.mp4', '') + ".pkl"))
+        joblib.dump(vibe_results, os.path.join(output_path, os.path.basename(video_file).replace('.avi', '') + ".pkl"))
 
         if not args.no_render:
             # ========= Render results as a single video ========= #

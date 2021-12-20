@@ -59,7 +59,9 @@ def main(args):
     if not os.path.isdir(video_folder):
         exit(f'Input video folder \"{video_folder}\" does not exist!')
         
-    videos = glob.glob(video_folder + '/*.avi')
+    scene = args.scene
+        
+    videos = glob.glob(video_folder + '/' + scene + '*.avi')
     videos.sort()
 
     output_path = os.path.join(args.output_folder)
@@ -405,6 +407,10 @@ if __name__ == '__main__':
     parser.add_argument('--smooth_beta', type=float, default=0.7,
                         help='one euro filter beta. '
                              'Increasing the speed coefficient(beta) decreases speed lag.')
+    
+    parser.add_argument('--scene', type=str,
+                        help='which scene to consider')
+
 
     args = parser.parse_args()
 

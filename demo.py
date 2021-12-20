@@ -63,7 +63,7 @@ def main(args):
         
     videos = glob.glob(video_folder + '/' + scene + '*.avi')
     videos.sort()
-    print(videos)
+    print(len(videos))
 
     output_path = os.path.join(args.output_folder)
     os.makedirs(output_path, exist_ok=True)
@@ -88,7 +88,7 @@ def main(args):
     
     for idx, video_file in enumerate(videos):
         
-        print("Applying VIBE estimation to video", idx+1, "on", len(videos)
+        print("Applying VIBE estimation to video", idx+1, "on", len(videos))
         image_folder, num_frames, img_shape = video_to_images(video_file, return_info=True)
         # print(f'Input video number of frames {num_frames}')
         orig_height, orig_width = img_shape[:2]

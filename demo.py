@@ -87,7 +87,7 @@ def main(args):
     
     for idx, video_file in enumerate(videos):
         
-        print("Applying VIBE estimation to video", idx)
+        print("Applying VIBE estimation to video", idx+1, "on", len(videos)
         image_folder, num_frames, img_shape = video_to_images(video_file, return_info=True)
         # print(f'Input video number of frames {num_frames}')
         orig_height, orig_width = img_shape[:2]

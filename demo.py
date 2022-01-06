@@ -158,13 +158,19 @@ def main(args):
 
                     batch = batch.unsqueeze(0)
                     batch = batch.to(device)
+                    print('Batch size: ')
+                    print(batch.shape)
 
                     batch_size, seqlen = batch.shape[:2]
                     output = model(batch)[-1]
 
                     pred_cam.append(output['theta'][:, :, :3].reshape(batch_size * seqlen, -1))
                     pred_verts.append(output['verts'].reshape(batch_size * seqlen, -1, 3))
+                    print('Pose shape before reshaping: ')
+                    print(output['theta'][:,:,3:75].shape)
                     pred_pose.append(output['theta'][:,:,3:75].reshape(batch_size * seqlen, -1))
+                    print('Pose shape after reshaping: ')
+                    print(pred_pose[-1].shape)
                     pred_betas.append(output['theta'][:, :,75:].reshape(batch_size * seqlen, -1))
                     pred_joints3d.append(output['kp_3d'].reshape(batch_size * seqlen, -1, 3))
                     smpl_joints2d.append(output['kp_2d'].reshape(batch_size * seqlen, -1, 2))
@@ -173,6 +179,8 @@ def main(args):
                 pred_cam = torch.cat(pred_cam, dim=0)
                 pred_verts = torch.cat(pred_verts, dim=0)
                 pred_pose = torch.cat(pred_pose, dim=0)
+                print('Final pose shape: ')
+                print(pred_pose.shape)
                 pred_betas = torch.cat(pred_betas, dim=0)
                 pred_joints3d = torch.cat(pred_joints3d, dim=0)
                 smpl_joints2d = torch.cat(smpl_joints2d, dim=0)
